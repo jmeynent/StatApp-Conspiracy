@@ -1,0 +1,13 @@
+On ouvre la base de données
+```{r cars}
+install.packages("haven")
+library(haven)
+df <- read_dta("ESS10_2.2.dta")
+```
+On va ensuite chercherà travailler sur des colonnes précises
+```{r cars}
+library(dplyr)
+```
+```{r cars}
+
+```
