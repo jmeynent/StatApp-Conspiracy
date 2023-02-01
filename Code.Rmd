@@ -9,5 +9,16 @@ On va ensuite chercherà travailler sur des colonnes précises
 library(dplyr)
 ```
 ```{r cars}
-
+df_int <- select(df, secgrdec, scidecpb, gvconc19) #BDD avec variables d'intérêt
+df_int
 ```
+
+```{r cars}
+summary(df_int)
+```
+Ce tableau nous indique que :
+The idea that a small secret group of person is responsible for making all major decisions in world politics looks distributed in an uniform way. 
+The idea Groups of scientists manipulate, fabricate, or suppress evidence in order to deceive the public is not shared by the majority of population (Neither agree nor disagree at 1st quartile). Same for the Coronavirus is the result of deliberate and concealed efforts of some government or organisation. 
+However, the means are pretty similar : lightly nearer of "disagree". 
+=> Not equivalent between opinion. There's no : complotist vs. no complotists. 
+
