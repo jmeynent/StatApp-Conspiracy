@@ -20,5 +20,19 @@ Ce tableau nous indique que :
 The idea that a small secret group of person is responsible for making all major decisions in world politics looks distributed in an uniform way. 
 The idea Groups of scientists manipulate, fabricate, or suppress evidence in order to deceive the public is not shared by the majority of population (Neither agree nor disagree at 1st quartile). Same for the Coronavirus is the result of deliberate and concealed efforts of some government or organisation. 
 However, the means are pretty similar : lightly nearer of "disagree". 
-=> Not equivalent between opinion. There's no : complotist vs. no complotists. 
+=> Not equivalent between opinion. There's no : complotist vs. no complotists.
 
+We'll gonna do a PCA (Le code ne fonctionne pas)
+```{r cars}
+install.packages("devtools")
+library(devtools)
+install_github("husson/FactoMineR")
+library(FactoMineR)
+```
+The code
+```{r cars}
+install.packages("missMDA")
+library("missMDA")
+imputePCA(df)
+PCA(df, scale.unit = TRUE, ncp = 5, graph = TRUE)
+```
