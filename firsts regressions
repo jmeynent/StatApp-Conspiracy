@@ -1,0 +1,83 @@
+df <- read_dta("/Users/berger/Downloads/ESS10_2.2.dta")
+
+#essaie de regression linéaire en faisant des packages de données 
+#variables B selection excel - TRUST
+
+lm_sec<-lm(secgrdec~trstprl + trstlgl +trstep + trstplc + trstplt + trstprt + trstun + trstsci, data = df)
+summary(lm_sec)
+
+lm_sci<-lm(scidecpb~trstprl + trstlgl +trstep + trstplc + trstplt + trstprt + trstun + trstsci, data = df)
+summary(lm_sci)
+
+lm_19<-lm(gvconc19~trstprl + trstlgl +trstep + trstplc + trstplt + trstprt + trstun + trstsci, data = df)
+summary(lm_19)
+
+#### catégorie H du questionnaire -  variables selcection excel
+lm_sec_H<-lm(secgrdec~ipcrtiv +imprich + ipeqopt + ipshabt + impsafe + ipfrule + ipudrst + ipmodst + impfree + 
+               iphlppl + ipsuces + ipstrgv + ipadvnt + ipbhprp + iprspot + impenv + imptrad, data = df)
+summary(lm_sec_H)
+#toutes les estimations inférieure à 0.07 et significatif
+lm_sci_H<-lm(scidecpb~ipcrtiv +imprich + ipeqopt + ipshabt + impsafe + ipfrule + ipudrst + ipmodst + impfree + 
+               iphlppl + ipsuces + ipstrgv + ipadvnt + ipbhprp + iprspot + impenv + imptrad, data = df)
+summary(lm_sci_H)
+#toutes les estimations inférieure à 0.07 et significatif
+
+lm_19_H<-lm(gvconc19~ipcrtiv +imprich + ipeqopt + ipshabt + impsafe + ipfrule + ipudrst + ipmodst + impfree + 
+              iphlppl + ipsuces + ipstrgv + ipadvnt + ipbhprp + iprspot + impenv + imptrad, data = df)
+summary(lm_19_H)
+#toutes les estimations inférieure à 0.07 et significatif
+
+
+
+###catégorie K du questionnaire - variables selection excel
+lm_sec_K<-lm(secgrdec~scidecpb +panpriph + panmonpb + panfolru + panclobo + panresmo + gvhanc19 + gvimpc19 + gvconc19 + getnvc19,
+             data = df)
+summary(lm_sec_K)
+#toutes les estimations inférieure à 0.07 ( val. absolue) et significatif
+#SAUF : scidecpb qui a un estimate dee 0.37 significatif au seuil de 1%
+#ET getnvc1ç qui correspond à Will you get vaccinated against coronavirus with a vaccine that was approved by the national regulatory authority in [country]? 
+#estimate de -0.25418 significatif au seuil de 5%
+lm_sci_K<-lm(scidecpb~secgrdec +panpriph + panmonpb + panfolru + panclobo + panresmo + gvhanc19 + gvimpc19 + gvconc19 + getnvc19,
+             data = df)
+summary(lm_sci_K)
+#toutes les variablees ont un estimate <0.05 en valeur absolue sauf les variables : 
+#secgrdec qui a un estimate de 0.31 significatif au seuil de 1%, gvconc19 qui a un estimate positif de 0.219791 significatifs au seuil de 1%
+#getnvc qui a un estimate de _0.102282 mais non significatif
+lm_19_K<-lm(gvconc19~scidecpb +panpriph + panmonpb + panfolru + panclobo + panresmo + gvhanc19 + gvimpc19 + secgrdec + getnvc19,
+            data = df)
+summary(lm_19_K)
+#toutes les variab les ont des estimates <0.06 en valeur absolue sauf lees variables : 
+#scidecpb qui a un estimate de 0.249296 significatif au seuil de 1% eet getvcn19 -0.383630 avec une significativité au seuil de 5%
+
+
+###catégorie D du questionnaire - variables selection excel 
+lm_sec_D<-lm(secgrdec~fairelcc + medcrgvc + viepol, data = df)
+summary(lm_sec_D)
+#les variables ont des estimates inférieures à 0.01, les résultats sont significatifs, 
+
+lm_sci_D<-lm(scidecpb~fairelcc + medcrgvc + viepol, data = df)
+summary(lm_sci_D)
+#la variable fairelcc : National elections90 in [country] are free and fair91. obtient un estimate de 0.106876 significatif
+# on a donc la réponsee à cette question liée à celle dee l'existence d'un groupe qui prend les grandes décisions
+lm_19_D<-lm(gvconc19~fairelcc + medcrgvc + viepol, data = df)
+summary(lm_19_D)
+#encore une fois la variable fairelcc a un estimate positif 0.119736 et significatif
+
+
+###catégorie C du questionnaire - variables selection excel et G36
+lm_sec_C<-lm(secgrdec~happy + sclmeet + sclact + crmvct + atchctr + rlgblg + dscrgrp +brncntr
+             + ccnthum + wrclmch + vteurmmb + jbprtfp, data = df)
+summary(lm_sec_C)
+#toutes les variables ont des eeestimates faibles et significatifs en majorité. 
+#la variable rlgblg : Have you ever considered yourself as belonging to any particular religion or denomination? obtieent un estimate de 0.2928528
+#significatif au seuil de 1%. Les gens qui ne croient pas en une religion ont un chiffre pour la question du secret group plus élevé 
+#on a aussi la variable ccnthum : Do you think that cliamte change is causeed by natural processes human acitivty or both ? 
+# qui a un estimate de 0.13 significatif au seuil de 1% // à voir les cartes de réponse
+lm_sci_C<-lm(scidecpb~happy + sclmeet + sclact + crmvct + atchctr + rlgblg + dscrgrp +brncntr
+             + ccnthum + wrclmch + vteurmmb + jbprtfp, data = df)
+summary(lm_sci_C)
+# on retrouve les même variables avec des estimates plus faibles : 0.21 pour la première et 0.12 pour la secondee
+lm_19_C<-lm(gvconc19~happy + sclmeet + sclact + crmvct + atchctr + rlgblg + dscrgrp +brncntr
+            + ccnthum + wrclmch + vteurmmb + jbprtfp, data = df)
+summary(lm_19_C)
+# on retrouve les même variables avec des estimates plus faibles : 0.30 pour la première et 0.12 pour la secondee
